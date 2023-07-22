@@ -99,6 +99,7 @@ contract NftApparel is ERC1155, Ownable {
             (address, uint, uint)
         );
         require(!isMinted[token][feature], "Already minted");
+        isMinted[token][feature] = true;
         IMailBox.dispact(_destinationDomain, _recipientAddress, _messageBody);
     }
 
