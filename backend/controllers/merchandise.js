@@ -88,7 +88,10 @@ exports.editMerchandise = async (req, res) => {
     name,
     type,
     claimable,
+    price
   } = req.body;
+
+  console.log("prioce",price)
 
   if (!id || !collection_id) {
     return res
@@ -114,6 +117,7 @@ exports.editMerchandise = async (req, res) => {
           name,
           description,
           claimable,
+          price
         },
         {
           where: {

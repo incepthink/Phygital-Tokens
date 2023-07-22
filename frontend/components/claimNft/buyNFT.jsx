@@ -5,7 +5,7 @@ import { NftTypes } from '../../config/models'
 import { StoreContext } from '../../utils/Store'
 import NftSignatureBox from '../NftSignatureBox/NftSignatureBox'
 
-const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, signIn, signUp, ownerTokens,handlePrice }) => {
+const BuyNFT = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, signIn, signUp, ownerTokens,handlePrice }) => {
   const { state, dispatch } = useContext(StoreContext)
   console.log(signIn && !state?.user?.id)
   //* Returning this incase there is no product (wrong link or server side issues)
@@ -26,7 +26,7 @@ const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, sign
       </div>
       <div className='w-full grid grid-cols-3 justify-center gap-x-16 p-4 md:p-12'>
         <div className='col-span-3 md:col-span-1' >
-          <img src={product.nft_image_url} alt='' width='100%' height='100%' layout="responsive" objectFit="contain" />
+          <img src={product.nft_image_url} alt='' width='80%' height='80%' layout="responsive" objectFit="contain" />
         </div>
         <div className='col-span-3 md:col-span-2'>
           <div>
@@ -34,6 +34,7 @@ const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, sign
           </div>
           <h2 className='my-4 text-lg font-semibold'>{product.collection?.name}</h2>
           <h3 className='font-sm'>{product.description}</h3>
+          <h3 className=' text-xl mt-4 font-bold'>Price: {product.price} APEX</h3>
           <div className='flex flex-col-reverse gap-y-8 md:flex-row justify-between my-6'>
             {
               /* <div className='border-[1px] py-3 px-3 md:w-[40%]'>
@@ -51,20 +52,14 @@ const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, sign
             }
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 justify-between items-center gap-x-12 gap-y-4'>
-            
-            {!onClaimToWallet ? null :
-              <button
+
+          <button
                 className='py-3 px-8 bg-custom-blue w-full rounded-sm'
                 onClick={onClaimToWallet}>
-                Claim To My Wallet
+                Buy NFT 
               </button>
-            }
-            {/* {(onClaimWithEmail && !signIn) ? <button
-              className='py-3 px-8 bg-blue-700 w-full rounded-sm'
-              onClick={onClaimWithEmail}>
-              Claim To Local Wallet
-            </button> : null
-            } */}
+            
+            
             {!ownerTokens ? null :
               <h4 className='text-custom-blue text-center'>Tokens in wallet: {ownerTokens}</h4>
             }
@@ -128,4 +123,4 @@ const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, sign
   )
 }
 
-export default ClaimNft
+export default BuyNFT

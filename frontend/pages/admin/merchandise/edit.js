@@ -41,6 +41,7 @@ const edit = () => {
         name: fetchedData.data.name,
         type: fetchedData.data.type,
         claimable: fetchedData.data.claimable,
+        price: fetchedData.data.price,
       });
     }
   }, [id]);
@@ -275,6 +276,25 @@ const edit = () => {
                       setMerch({
                         ...merch,
                         description: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+
+                <div className="text-left mb-5 mr-2 w-1/2">
+                  <label className="text-white text-sm font-bold mb-2 mt-2">
+                    Price
+                  </label>
+
+                  <input
+                    className="shadow appearance-none border bg-transparent rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                    type="text"
+                    placeholder="Description"
+                    value={merch.price}
+                    onChange={(e) =>
+                      setMerch({
+                        ...merch,
+                        price: e.target.value,
                       })
                     }
                   />
