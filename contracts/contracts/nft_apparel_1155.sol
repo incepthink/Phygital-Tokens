@@ -91,13 +91,14 @@ contract NftApparel is ERC1155, Ownable {
 
     function transferTokenCrossChain(
         uint32 _destinationDomain,
-        bytes32 _recipientAddress,
+        address _recipientAddress,
         bytes calldata _messageBody
     ) external {
         (address user, uint token, uint feature) = abi.decode(
             _messageBody,
             (address, uint, uint)
         );
+        bytes32 receiver = addressToBytes32(_recipientAddress);
         require(!isMinted[token][feature], "Already minted");
         isMinted[token][feature] = true;
         IMailBox.dispact(_destinationDomain, _recipientAddress, _messageBody);
