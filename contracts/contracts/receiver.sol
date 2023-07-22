@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Receiver is ERC1155, Ownable {
     address public mailbox;
 
-    constructor(address _mailbox) {
+    constructor(address _mailbox) ERC1155("Test") {
         mailbox = _mailbox;
     }
 
@@ -23,7 +23,7 @@ contract Receiver is ERC1155, Ownable {
     ) external onlyMailbox {
         address sender = bytes32ToAddress(_sender);
         (address user, uint token, uint feature) = abi.decode(
-            _messageBody,
+            _body,
             (address, uint, uint)
         );
         _mint(user, feature, 1, "");

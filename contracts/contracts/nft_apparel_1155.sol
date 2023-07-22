@@ -4,6 +4,7 @@ pragma solidity 0.8.19;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IMailBox.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract NftApparel is ERC1155, Ownable {
     string public name;
@@ -32,9 +33,9 @@ contract NftApparel is ERC1155, Ownable {
         mailbox = _mailbox;
     }
 
-    function setTrustedForwarder(address _trustedForwarder) public {
-        _setTrustedForwarder(_trustedForwarder);
-    }
+    // function setTrustedForwarder(address _trustedForwarder) public {
+    //     _setTrustedForwarder(_trustedForwarder);
+    // }
 
     function addressToBytes32(address _addr) internal pure returns (bytes32) {
         return bytes32(uint256(uint160(_addr)));
