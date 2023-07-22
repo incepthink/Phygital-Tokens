@@ -213,29 +213,20 @@ export default function Catalog({ collectionList }) {
   //   );
   // };
 
-  const CollectionItem = ({img, heart, imglink, name}) => {
+  const CollectionItem = ({img, heart, imglink, name, id}) => {
     return (
-      <div className='border-[1px] border-gray-600 p-4 md:p-12'>
-        <img src={imglink} alt="img" className='w-[350px] object-cover object-center' />
-        <h1 className="text-lg md:text-2xl font-semibold tracking-wide mt-4">{name}</h1>
+      <div className=' rounded-lg md:p-4 flex flex-col  justify-center items-center bg-gray-800'>
+        <img src={imglink} alt="img" className='w-[250px] object-cover object-center' />
+        <h1 className="text-lg md:text-lg font-semibold tracking-wide mt-4">{name}</h1>
         <div className="flex items-center">
-          <h1 className={styles.para}>HascCollect Official</h1>
-          <img src="/images/homepage/home_star.png" alt="img" className="w-4 h-4 mx-2" />
+          {/* <h1 className="">HascCollect Official</h1> */}
         </div>
-        <div className='mt-6 w-full flex justify-between items-center gap-x-4'>
+        <div className='mt-2 w-full flex justify-between items-center '>
+          <Link href={`/buyNFT/${id}`}>
           <button
-            className="flex justify-between w-48 my-2 p-3 px-8 border-[1px] border-white rounded-sm">
+            className=" w-48 my-2 p-3 px-8 border-[1px] border-white rounded-sm text-center hover:bg-gray-600 transition transition-all">
             <h1>Buy now</h1>
-            <h1>-{'>'}</h1>
-          </button>
-        {/* <TransparentButton
-            // onClick={() => router.push("/contact")}
-            height="60"
-            width="180"
-          >
-            Buy Now -{">"}
-          </TransparentButton> */}
-          <img src={heart ? "/icons/heart.png" : "/icons/heart-outlined.png"} alt="img" className={heart ? 'w-14' : 'w-6'} />
+          </button></Link>
         </div>
       </div>
     )
@@ -247,13 +238,13 @@ export default function Catalog({ collectionList }) {
         <div className='w-full max-w-md flex flex-col items-center p-4'>
           <h1 className={'text-3xl my-2 ' + styles.arcadeFont}>CATALOGUE</h1>
           <h1 className='my-2 text-center font-manrope font-thin text-gray-300'>
-            Checkout our latest featured collections!
+            Checkout our latest featured NFTs!
           </h1>
         </div>
       </div>
 
       <div className='w-full flex flex-col items-center justify-center mt-8 md:mt-24'>
-        <div className="max-w-5xl w-[90vw] font-thin flex flex-col items-center justify-center font-manrope">
+        {/* <div className="max-w-5xl w-[90vw] font-thin flex flex-col items-center justify-center font-manrope">
           <h1 className="text-center text-sky-400 text-xl tracking-wide font-thin">Discover More</h1>
           <h1 className="font-medium text-3xl md:text-5xl  text-center m-8 mt-2">
             Latest Drop
@@ -282,9 +273,9 @@ export default function Catalog({ collectionList }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="max-w-5xl w-[90vw] font-thin flex flex-col items-center justify-center font-manrope mt-8 md:mt-24">
+        {/* <div className="max-w-5xl w-[90vw] font-thin flex flex-col items-center justify-center font-manrope mt-8 md:mt-24">
           <h1 className="text-center text-sky-400 text-xl tracking-wide font-thin">Discover More</h1>
           <h1 className="font-medium text-3xl md:text-5xl  text-center m-8 mt-2">
             Collection
@@ -313,10 +304,16 @@ export default function Catalog({ collectionList }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="max-w-5xl w-full font-thin flex flex-col md:flex-row gap-y-6 p-4 md:p-0 items-center justify-around font-manrope mb-24 mt-12">
-          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-sneakers.png" name="Cool Sneakers"/>
+        <div className="max-w-5xl w-full font-thin flex flex-col md:flex-row gap-y-6  md:p-0 items-center justify-around font-manrope mb-24 mt-12 flex-wrap">
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-sneakers.png" name="Cool Sneakers" id={3}/>
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
+           <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-sneakers.png" name="Cool Sneakers"/>
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
           <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
         </div>
       </div>

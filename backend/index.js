@@ -67,5 +67,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   sequelize.sync({});
   // sequelize.sync({ force: true }).then(() => {console.log("Drop and Resync with { force: true }"); process.exit(0);});
-  console.log("listing on " + PORT);
+  console.log("listening on " + PORT);
 });
