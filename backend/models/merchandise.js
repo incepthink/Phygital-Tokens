@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: true,
         allowNull: false,
       },
+      price : {
+        type: DataTypes.INTEGER,
+        defaultValue : 0
+      }
     },
     {
       sequelize,

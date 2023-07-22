@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 
 // TODO: Add check if contract actually owns the nft
 exports.claimLocalNft = async (req, res) => {
-  const { user_id, nft_id } = req.body;
+  const { user_id, nft_id, price } = req.body;
 
   if (!user_id || !nft_id) {
     res.status(500).json({ message: 'Missing user_id or nft_id' });
@@ -38,7 +38,7 @@ exports.claimLocalNft = async (req, res) => {
     if (!nft) {
       res.status(500).json({ message: 'Nft does not exist' });
       return;
-    } else if (nft.dataValues.collection.dataValues.type !== 'SIGNABLE') {
+    } else if (nft.dataValues.collection.dataValues.type !== 'CLAIMANDSHIP') {
       res.status(500).json({ message: 'Nft is not claimable' });
       return;
     }
@@ -87,10 +87,13 @@ exports.claimLocalNft = async (req, res) => {
 
 // TODO: Add check if contract actually owns the nft
 exports.claimlNftToWallet = async (req, res) => {
-  const { user_id, nft_id, wallet_address, toDelete } = req.body;
-  console.log('claim nft', user_id, nft_id);
+  const { user_id, nft_id, wallet_address, toDelete, price } = req.body;
+  console.log('claim nft', user_id, nft_id, price);
 
   try {
+    if(price == 0) {
+      return res.status(500).json({message : "Please enter a valid price in ApeX"})
+    }
     let user_inst = await user.findOne({
       where: {
         id: user_id,

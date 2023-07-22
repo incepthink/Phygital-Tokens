@@ -15,6 +15,7 @@ export default function ClaimLocalNft({ product, variations }) {
   const { state, dispatch } = useContext(StoreContext);
   const [isNftLocallyAdded, setisNftLocallyAdded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [price, setPrice] = useState(product.price);
   const [userWallet, setUserWallet] = useState('');
   const [isNftClaimedToWallet, setIsNftClaimedToWallet] = useState(false);
   const [transactionHash, setTransactionHash] = useState('');
@@ -80,6 +81,7 @@ export default function ClaimLocalNft({ product, variations }) {
         nft_id: product.id,
         wallet_address: state.user.wallet_address,
         toDelete: false,
+        price
       });
       console.log('SUCCESS', res);
       setTransactionHash(res.data.transactionHash);
@@ -96,10 +98,18 @@ export default function ClaimLocalNft({ product, variations }) {
     setIsLoading(false);
   };
 
+  const handlePrice = (e) => {
+    
+    setPrice(e.target.value);
+  }
+
   return (
     <div className='max-w-screen w-full font-gothom_pro'>
+      
       <AddEmailModal showModal={showAddEmailModal} setshowModal={setShowAddEmailModal} />
+      
       <AddWalletModal showModal={showAddWalletModal} setshowModal={setShowAddWalletModal} />
+      
       <AlertModal
         showModal={isNftLocallyAdded}
         setShowModal={setisNftLocallyAdded}
@@ -108,6 +118,7 @@ export default function ClaimLocalNft({ product, variations }) {
         confirmButtonText='View your NFTs'
         onConfirm={() => router.push('/user/myNfts')}
       />
+      
       <ClaimWithWalletModal
         showModal={isNftClaimedToWallet}
         setShowModal={setIsNftClaimedToWallet}
@@ -115,8 +126,15 @@ export default function ClaimLocalNft({ product, variations }) {
         transactionHash={transactionHash}
         onConfirm={(e) => router.push('/user/myNfts')}
       />
+      
       <LoadingModal showModal={isLoading} />
-      <ClaimNft product={product} onClaimWithEmail={onClaimWithEmail} onClaimToWallet={onClaimToWallet} />
+      
+      <ClaimNft 
+        product={product} 
+        onClaimWithEmail={onClaimWithEmail} 
+        onClaimToWallet={onClaimToWallet}  
+        handlePrice={handlePrice} 
+      />
     </div>
   );
 }

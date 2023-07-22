@@ -5,7 +5,7 @@ import { NftTypes } from '../../config/models'
 import { StoreContext } from '../../utils/Store'
 import NftSignatureBox from '../NftSignatureBox/NftSignatureBox'
 
-const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, signIn, signUp, ownerTokens }) => {
+const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, signIn, signUp, ownerTokens,handlePrice }) => {
   const { state, dispatch } = useContext(StoreContext)
   console.log(signIn && !state?.user?.id)
   //* Returning this incase there is no product (wrong link or server side issues)
@@ -51,19 +51,27 @@ const ClaimNft = ({ product, onClaimWithEmail, onClaimToWallet, onClaimNow, sign
             }
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 justify-between items-center gap-x-12 gap-y-4'>
+            
+            <input 
+              placeholder='Enter price in ApeX' 
+              type='number' 
+              onChange={ handlePrice }
+              className='py-3 px-8 bg-custom-blue w-full rounded-md text-white font-semibold placeholder:text-white placeholder:font-bold border-none focus:outline' 
+            />
+            
             {!onClaimToWallet ? null :
               <button
                 className='py-3 px-8 bg-custom-blue w-full rounded-sm'
                 onClick={onClaimToWallet}>
-                Claim To Crypro Wallet
+                Claim To My Wallet
               </button>
             }
-            {(onClaimWithEmail && !signIn) ? <button
+            {/* {(onClaimWithEmail && !signIn) ? <button
               className='py-3 px-8 bg-blue-700 w-full rounded-sm'
               onClick={onClaimWithEmail}>
               Claim To Local Wallet
             </button> : null
-            }
+            } */}
             {!ownerTokens ? null :
               <h4 className='text-custom-blue text-center'>Tokens in wallet: {ownerTokens}</h4>
             }

@@ -11,9 +11,11 @@ import NFTABI from "../../utils/NftApparelABI.json";
 import styles from "../../components/Navbar.module.css";
 import UserLayout from "../../components/layouts/UserLayout";
 import TransparentButton from "../../utils/buttons/TransparentButton";
+import TransferModal from "../../components/Modal/TransferModal";
 
 export default function Catalog({ collectionList }) {
   const { state, dispatch } = useContext(StoreContext);
+  const [transferClicked,setTransferClicked] = useState(false);
   console.log("USER", state.user);
 
   const router = useRouter();
@@ -115,10 +117,10 @@ export default function Catalog({ collectionList }) {
         {myNFTs.map((nft, index) => {
           if (nft)
             return (
-              <div className=" mx-6 my-6">
-                <Link href={"/catalog/" + nft.id} key={nft.id}>
+              <div className=" mx-4 my-6">
+                <div key={nft.id}>
                   {collectionItem(nft, false, false)}
-                </Link>
+                </div>
               </div>
             );
         })}
@@ -167,14 +169,15 @@ export default function Catalog({ collectionList }) {
             <h1>{nft?.claimable ? <>Claim now</> : <>View</>}</h1>
             <h1>-{">"}</h1>
           </button> */}
-          <TransparentButton height="60" width="180">
-            {isLocal ? (
+          <TransparentButton height="60" width="180" onClick={()=>setTransferClicked(true)}>
+            {/* {isLocal ? (
               <> View -{">"} </>
             ) : nft?.claimable ? (
               <>Claim now -{">"} </>
             ) : (
               <>View -{">"}</>
-            )}
+            )} */}
+            Transfer
           </TransparentButton>
 
           <img
@@ -189,6 +192,7 @@ export default function Catalog({ collectionList }) {
 
   return (
     <div className="w-full h-full">
+      <TransferModal showModal={transferClicked} setShowModal={setTransferClicked} />
       <div className="w-full h-[35vh] md:h-[26vh] bg-catalogue-background-1 bg-cover flex justify-center items-end text-white">
         <div className="w-full  justify-center p-4 text-center">
           <h1 className={"text-2xl my-2 w-full " + styles.arcadeFont}>
@@ -217,10 +221,10 @@ export default function Catalog({ collectionList }) {
             </div>
           </>
         )}
-        <div className="">
+        {/* <div className="">
           <h1 className="text-3xl text-custom-blue">Local Wallet</h1>
-        </div>
-        {localNFTs.length === 0 ? (
+        </div> */}
+        {/* {localNFTs.length === 0 ? (
           <div className=" min-h-[400px]">
             <div className="flex items-center justify-center bg-custom-blue/20 p-16 my-4 rounded-lg">
               <h1 className="text-2xl text-custom-blue">
@@ -234,7 +238,7 @@ export default function Catalog({ collectionList }) {
               {localNFTs.length ? <LocalNFTComponent /> : null}
             </div>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );
