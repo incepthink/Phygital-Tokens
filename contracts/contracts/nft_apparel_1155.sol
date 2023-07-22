@@ -9,7 +9,7 @@ contract NftApparel is ERC1155, Ownable {
     string public name;
     string public symbol;
     uint256 private highestId;
-
+    address mailbox;
     address apeCoin;
     uint price;
     //mappings
@@ -21,13 +21,15 @@ contract NftApparel is ERC1155, Ownable {
         string memory _symbol,
         string memory _name,
         address _apecoin,
-        uint _price
+        uint _price,
+        address _mailbox
     ) public ERC1155("") {
         name = _name;
         symbol = _symbol;
         highestId = 0;
         apeCoin = _apecoin;
         price = _price;
+        mailbox = _mailbox;
     }
 
     function setTrustedForwarder(address _trustedForwarder) public {
@@ -101,7 +103,11 @@ contract NftApparel is ERC1155, Ownable {
         bytes32 receiver = addressToBytes32(_recipientAddress);
         require(!isMinted[token][feature], "Already minted");
         isMinted[token][feature] = true;
-        IMailBox.dispact(_destinationDomain, _recipientAddress, _messageBody);
+        IMailBox(mailbox).dispact(
+            _destinationDomain,
+            _recipientAddress,
+            _messageBody
+        );
     }
 
     function setTokenUri(uint256 id, string memory _metadata) public onlyOwner {
