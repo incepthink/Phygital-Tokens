@@ -13,7 +13,7 @@ const HashCaseLogo = () => {
                   Hash
                 </span> */}
         <span className='font-bold text-lg md:text-xl lg:text-2xl font-gothom_pro text-white'>
-          HashCase
+        Pixel Link
         </span>
       </a>
     </Link>

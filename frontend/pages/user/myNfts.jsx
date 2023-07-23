@@ -75,12 +75,66 @@ export default function Catalog({ collectionList }) {
     // let tokens = await getOwnedTokens();
     console.log("tokens request", tokens);
     try {
-      const allmyNFTs = await axios.post(
-        `${process.env.API}/merchandise/getallbyIDs`,
-        tokens
-      );
-      console.log("MY NFTS", allmyNFTs.data);
-      setMyNFTs(allmyNFTs.data);
+      // const allmyNFTs = await axios.post(
+      //   `${process.env.API}/merchandise/getallbyIDs`,
+      //   tokens
+      // );
+      const chainId = await ethereum.request({ method: "eth_chainId" });
+      console.log("chainId",chainId)
+      let allmyNFTs= []
+      if (chainId == "0x89") {
+         allmyNFTs = [ {
+          id: 15,
+          nft_image_url: "https://hash-collect.s3.ap-south-1.amazonaws.com/fcea3c8c-9008-4772-9114-937bc2fe661d.jpeg",
+          description: "Noun 1 is a member of the Nouns DAO",
+          name: "NOUN#1 on ZKev",
+          collection: {
+            id:2,
+            name:"Base Collection on Polygon ZK ev"
+          }
+        },
+      
+      ]
+      } 
+      if (chainId == "0x64") {
+         allmyNFTs = [
+        {
+          id: 16,
+          nft_image_url: "https://hash-collect.s3.ap-south-1.amazonaws.com/b923dd95-3df3-4b38-9d4d-b6fc12d08daf.jpeg",
+          description: "Get a free pair of glasses at Nouns Conference",
+          name: "Glasses Utility",
+          collection: {
+            id:3,
+            name:"Gnosis Contract"
+          }
+        },
+        // {
+        //   id: 17,
+        //   nft_image_url: "https://hash-collect.s3.ap-south-1.amazonaws.com/b923dd95-3df3-4b38-9d4d-b6fc12d08daf.jpeg",
+        //   description: "Access to the Foxes Community Lounge",
+        //   name: "Team Fox",
+        //   collection: {
+        //     id:3,
+        //     name:"Gnosis Contract"
+        //   }
+        // },
+        // {
+        //   id: 18,
+        //   nft_image_url: "https://hash-collect.s3.ap-south-1.amazonaws.com/WhatsApp+Image+2023-07-23+at+02.05.08.jpeg",
+        //   description: "Your ticket to Nouns Convention",
+        //   name: "NOUNS Member",
+        //   collection: {
+        //     id:3,
+        //     name:"Gnosis Contract"
+        //   }
+        // },
+  
+      
+      
+      ]
+     } 
+      console.log("MY NFTS", allmyNFTs);
+      setMyNFTs(allmyNFTs);
     } catch (err) {
       console.log(err);
     }
@@ -150,7 +204,8 @@ export default function Catalog({ collectionList }) {
 
   const collectionItem = (nft, heart, isLocal) => {
     return (
-      <div className="border-[1px] border-gray-600 p-4 max-w-sm w-[320px]  flex flex-col justify-between items-center">
+      <Link href={`/viewNFT/${nft.id}`}>
+      <div className="bg-gray-800 rounded-lg cursor-pointer p-4 max-w-sm w-[320px]  flex flex-col justify-between items-center">
         <img
           src={nft?.nft_image_url}
           alt="img"
@@ -169,16 +224,10 @@ export default function Catalog({ collectionList }) {
             <h1>{nft?.claimable ? <>Claim now</> : <>View</>}</h1>
             <h1>-{">"}</h1>
           </button> */}
-          <TransparentButton height="60" width="180" onClick={()=>setTransferClicked(true)}>
-            {/* {isLocal ? (
-              <> View -{">"} </>
-            ) : nft?.claimable ? (
-              <>Claim now -{">"} </>
-            ) : (
-              <>View -{">"}</>
-            )} */}
-            Transfer
-          </TransparentButton>
+          {/* <TransparentButton height="60" width="180" onClick={()=>setTransferClicked(true)}>
+            
+            View
+          </TransparentButton> */}
 
           <img
             src={heart ? "/icons/heart.png" : "/icons/heart-outlined.png"}
@@ -187,15 +236,16 @@ export default function Catalog({ collectionList }) {
           />
         </div>
       </div>
+      </Link>
     );
   };
 
   return (
     <div className="w-full h-full">
       <TransferModal showModal={transferClicked} setShowModal={setTransferClicked} />
-      <div className="w-full h-[35vh] md:h-[26vh] bg-catalogue-background-1 bg-cover flex justify-center items-end text-white">
+      <div className="w-full h-[25vh] md:h-[26vh]  bg-cover flex justify-center items-end text-white">
         <div className="w-full  justify-center p-4 text-center">
-          <h1 className={"text-2xl my-2 w-full " + styles.arcadeFont}>
+          <h1 className={"text-2xl my-2 w-full " }>
             My Wallet
           </h1>
           <p>Explore your NFTs</p>
@@ -204,7 +254,6 @@ export default function Catalog({ collectionList }) {
 
       <div className="w-full pt-12 text-white font-manrope px-4 md:px-10 lg:px-20 xl:px-36 min-h-screen">
         <div className="">
-          <h1 className="text-3xl text-custom-blue">On Chain Wallet</h1>
         </div>
         {myNFTs.length === 0 ? (
           <div className=" min-h-[400px]">

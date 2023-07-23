@@ -1,11 +1,11 @@
 .strBtn {
   background: linear-gradient(
     135deg,
-    #40d8ff 0%,
-    #14bae3 19.24%,
-    #13b1e6 68.64%,
-    #11aadf 81.77%,
-    #0b98c5 100%
+    #40ffa6 0%,
+    #14e382 19.24%,
+    #13e66b 68.64%,
+    #11df6e 81.77%,
+    #0bc587 100%
   );
 
   border: 0.72px solid;
@@ -55,10 +55,10 @@
 .heroButton {
   background-image: linear-gradient(
     to right,
-    #25aae1,
-    #4481eb,
-    #04befe,
-    #3f86ed
+    #25e15d,
+    #44ebab,
+    #04fe43,
+    #53ed3f
   );
   box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }

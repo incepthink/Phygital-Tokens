@@ -213,13 +213,13 @@ export default function Catalog({ collectionList }) {
   //   );
   // };
 
-  const CollectionItem = ({img, heart, imglink, name, id}) => {
+  const CollectionItem = ({img, heart, imglink, name, id, price}) => {
     return (
       <div className=' rounded-lg md:p-4 flex flex-col  justify-center items-center bg-gray-800'>
         <img src={imglink} alt="img" className='w-[250px] object-cover object-center' />
         <h1 className="text-lg md:text-lg font-semibold tracking-wide mt-4">{name}</h1>
         <div className="flex items-center">
-          {/* <h1 className="">HascCollect Official</h1> */}
+          <h1 className=" text-sky-500 font-bold">Price: {price} APEX</h1>
         </div>
         <div className='mt-2 w-full flex justify-between items-center '>
           <Link href={`/buyNFT/${id}`}>
@@ -234,16 +234,16 @@ export default function Catalog({ collectionList }) {
 
   return (
     <div className='w-full text-white bg-black'>
-      <div className='w-full h-[32vh] bg-catalogue-background-1 bg-cover flex justify-center items-end'>
+      <div className='w-full h-[25vh] bg-cover flex justify-center items-end'>
         <div className='w-full max-w-md flex flex-col items-center p-4'>
-          <h1 className={'text-3xl my-2 ' + styles.arcadeFont}>CATALOGUE</h1>
+          <h1 className={'text-3xl my-2 ' }>CATALOGUE</h1>
           <h1 className='my-2 text-center font-manrope font-thin text-gray-300'>
             Checkout our latest featured NFTs!
           </h1>
         </div>
       </div>
 
-      <div className='w-full flex flex-col items-center justify-center mt-8 md:mt-24'>
+      <div className='w-full flex flex-col items-center justify-center mt-8 md:mt-2'>
         {/* <div className="max-w-5xl w-[90vw] font-thin flex flex-col items-center justify-center font-manrope">
           <h1 className="text-center text-sky-400 text-xl tracking-wide font-thin">Discover More</h1>
           <h1 className="font-medium text-3xl md:text-5xl  text-center m-8 mt-2">
@@ -307,14 +307,15 @@ export default function Catalog({ collectionList }) {
         </div> */}
 
         <div className="max-w-5xl w-full font-thin flex flex-col md:flex-row gap-y-6  md:p-0 items-center justify-around font-manrope mb-24 mt-12 flex-wrap">
-          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-sneakers.png" name="Cool Sneakers" id={3}/>
-          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
-          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/WhatsApp+Image+2023-07-23+at+10.11.33.jpeg" name="NOUN#1 on ZKev" id={15} price={1}/>
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/WhatsApp+Image+2023-07-23+at+10.15.43.jpeg" name="NOUN#2" price={5} />
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/WhatsApp+Image+2023-07-23+at+10.15.18.jpeg" name="NOUN#3" price={8} />
+          {/* <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
           <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
            <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-sneakers.png" name="Cool Sneakers"/>
           <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
           <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
-          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" />
+          <CollectionItem heart={false} imglink="https://hash-collect.s3.ap-south-1.amazonaws.com/website/token-img-tee.png" name="Incepthink Tee" /> */}
         </div>
       </div>
     </div>

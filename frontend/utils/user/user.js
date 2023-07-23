@@ -103,12 +103,12 @@ export const connectToMetamask = async (dispatch) => {
     return;
   }
 
-  const chainId = 137;
-  const requrestNetworkSuccess = await requestNetwork(chainId);
-  if (!requrestNetworkSuccess) {
-    console.log("Not able to change network");
-    return;
-  }
+  // const chainId = 137;
+  // const requrestNetworkSuccess = await requestNetwork(chainId);
+  // if (!requrestNetworkSuccess) {
+  //   console.log("Not able to change network");
+  //   return;
+  // }
 
   try {
     const web3 = new ethers.providers.Web3Provider(window.ethereum, 'any');

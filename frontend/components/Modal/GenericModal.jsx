@@ -10,7 +10,7 @@ const GenericModal = ({ children, heading, subheading, setshowModal, onClose }) 
           <div className='p-4 bg-black font-manrope text-white border-[1px] border-gray-600'>
             <div className='flex flex-col items-center justify-center'>
               <div className='relative text-center w-full'>
-                <h1 className={"text-3xl flex-1 uppercase text-custom-blue " + styles.arcadeFont}>
+                <h1 className={"text-3xl flex-1 uppercase text-green-400 "}>
                   {heading}
                 </h1>
                 <button
@@ -29,7 +29,6 @@ const GenericModal = ({ children, heading, subheading, setshowModal, onClose }) 
               {children}
             </div>
           </div>
-          <img src="/images/misc/modal_bg.png" alt="" />
         </div>
       </div>
       <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>

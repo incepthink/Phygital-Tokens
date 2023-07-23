@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@airstack/airstack-react": "^0.4.5",
     "axios": "^0.24.0",
     "cookie": "^0.4.1",
     "ethers": "^5.5.2",

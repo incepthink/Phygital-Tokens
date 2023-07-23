@@ -15,12 +15,12 @@ export default function Home() {
     <>
       <div className="max-w-screen flex flex-col items-center">
         <Hero />
-        <HomeSections />
-        <Working />
+        {/* <HomeSections /> */}
+        {/* <Working /> */}
         {/* <Featured /> */}
         {/* <SpecialCard /> */}
         {/* <BestSelling /> */}
-        <ContactUs />
+        {/* <ContactUs /> */}
       </div>
     </>
   );

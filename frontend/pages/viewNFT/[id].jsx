@@ -10,11 +10,9 @@ import AddEmailModal from '../../components/Modal/AddEmailModal';
 import AddWalletModal from '../../components/Modal/AddWalletModal';
 import notify from '../../utils/notify';
 import { NftTypes } from '../../config/models';
-import BuyNFT from '../../components/claimNft/buyNFT';
-import ABI from "./ZKABI.json";
-import { ethers } from "ethers";
+import ClaimUtility from '../../components/claimNft/claimUtility';
 
-export default function buyNFT({ product, variations }) {
+export default function viewNFT({ product, variations }) {
   const { state, dispatch } = useContext(StoreContext);
   const [isNftLocallyAdded, setisNftLocallyAdded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,11 +31,10 @@ export default function buyNFT({ product, variations }) {
   const mint = async () => {
 
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
       // console.log(await signer.getAddress());
       const signer = provider.getSigner();
       // setaddress(await signer.getAddress());
-      let nftaddress= "0x27a7e8a0a627ec7bd190e3f493069678dc26df5e"
+      let nftaddress= "0xsdhjgfljhksdfgljdf"
       let contract = new ethers.Contract(nftaddress, ABI, signer);
       // console.log(contract);
       let address = await signer.getAddress();
@@ -49,12 +46,15 @@ export default function buyNFT({ product, variations }) {
       // // console.log(gas.toNumber());
       // // return;
       // //transaction
-      let transaction = await contract.mint("0xDb8F34eb2304d18A60c53D19cD18D6274935daEE",2,1, "" , "");
+      let transaction = await contract.mint(num, {
+        value: priceInWei,
+        // gasLimit: gas,
+      });
       await transaction.wait();
       console.log(transaction);
     } catch (err) {
       console.log(err);
-      // setShowMintedModal(false);
+      setShowMintedModal(false);
     }
   };
 
@@ -97,25 +97,27 @@ export default function buyNFT({ product, variations }) {
       notify('Please sign in to claim this NFT', 'info');
       return;
     }
-    console.log("hereee")
-    // return;
+
+    if (!state?.user?.wallet_address) {
+      setShowAddWalletModal(true);
+      return;
+    }
+
     setIsLoading(true);
     try {
-      // let res = await axios.post(`${process.env.API}/localnft/claimtowallet`, {
-      //   user_id: state.user.id,
-      //   nft_id: product.id,
-      //   wallet_address: state.user.wallet_address,
-      //   toDelete: false,
-      //   price
-      // });
-      // console.log('SUCCESS', res);
-      // setTransactionHash(res.data.transactionHash);
-      // setUserWallet(res.data.wallet_address);
-      // setIsNftClaimedToWallet(true);
-      await mint();
+      let res = await axios.post(`${process.env.API}/localnft/claimtowallet`, {
+        user_id: state.user.id,
+        nft_id: product.id,
+        wallet_address: state.user.wallet_address,
+        toDelete: false,
+        price
+      });
+      console.log('SUCCESS', res);
+      setTransactionHash(res.data.transactionHash);
+      setUserWallet(res.data.wallet_address);
+      setIsNftClaimedToWallet(true);
       notify('NFT claimed successfully!', 'success');
     } catch (err) {
-      console.log(err)
       if (err?.response?.data?.message) {
         notify(err?.response?.data?.message, 'error');
       } else {
@@ -156,7 +158,7 @@ export default function buyNFT({ product, variations }) {
       
       <LoadingModal showModal={isLoading} />
       
-      <BuyNFT 
+      <ClaimUtility 
         product={product} 
         onClaimWithEmail={onClaimWithEmail} 
         onClaimToWallet={onClaimToWallet}  

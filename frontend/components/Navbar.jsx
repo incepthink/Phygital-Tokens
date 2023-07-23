@@ -14,10 +14,11 @@ import LoginModal from './Modal/LoginModal';
 
 import { logoutHandler, connectToMetamask } from '../utils/user/user';
 import HashCaseLogo from './others/HashCaseLogo';
+import SelectChainModal from './Modal/SelectChainModal';
 
 const navStyles = {
   navDiv: ' flex justify-center items-center fixed w-full',
-  navBar: ' bg-[#00C2FF]/20 backdrop-blur-lg',
+  navBar: ' bg-green-800 backdrop-blur-lg',
   closedNavIcon: 'w-[25px] h-[2px] bg-white my-1.5 duration-500',
 };
 
@@ -36,6 +37,10 @@ const Navbar = () => {
   const [hoverOverConnect, setHoverOverConnect] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showSigninModal, setShowSigninModal] = useState(false);
+  const [showchainModal, setshowchainModal] = useState(false);
+
+
+
 
   const { pathname } = useRouter();
   const router = useRouter();
@@ -43,13 +48,13 @@ const Navbar = () => {
   const loginStyles = {
     action:
       'border-[1px] p-4 lg:px-8 text-white text-xs lg:text-sm border-white ' +
-      styles.arcadeFont,
+      null,
     option:
       'text-xs w-full uppercase my-1 py-2 hover:bg-custom-blue/75 ' +
-      styles.arcadeFont,
+      null,
     optionMobile:
       'border-[1px] py-3 text-white text-xs border-white w-full ' +
-      styles.arcadeFont,
+      null,
     hoverDiv: `${hoverOverConnect ? 'opacity-100' : ' opacity-0'} ${
       router.pathname === '/' ? 'hidden' : ''
     } font-normal w-full text-center absolute top-14 shadow-2xl rounded-lg bg-custom-blue/25 list-none uppercase transition-all border-[1px] border-t-0 rounded-t-none`,
@@ -91,9 +96,9 @@ const Navbar = () => {
           className={'p-4 md:p-0' + getNavClasses('/about')}
           onClick={onClickFunction}
         >
-          <Link href='/about'>
+          {/* <Link href='/about'>
             <a>ABOUT</a>
-          </Link>
+          </Link> */}
         </div>
         <div
           className={'p-4 md:p-0' + getNavClasses('/catalog')}
@@ -147,7 +152,7 @@ const Navbar = () => {
           </Link>
         </ul>
 
-        <ul>
+        {/* <ul>
           <Link href='/user'>
             <div className={dropdownStyles.items}>
               <div className='px-2'>
@@ -171,7 +176,7 @@ const Navbar = () => {
               <div>My Orders</div>
             </div>
           </Link>
-        </ul>
+        </ul> */}
 
         <div className='relative'>
           <div
@@ -220,7 +225,7 @@ const Navbar = () => {
             <Link href='/user/myNfts'>
               <button
                 // onClick={(e) => e.preventDefault()}
-                className={`flex border-[1px] px-4 py-3 lg:px-8 text-white text-[14px] border-white items-center  ' + ${styles.arcadeFont}`}
+                className={`flex border-[1px] px-4 py-3 lg:px-8 text-white text-[14px] border-white items-center  ' + ${null}`}
               >
                 {/* {state?.user?.wallet_address ? (
                 <>
@@ -247,7 +252,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={(e) => e.preventDefault()}
-              className={`flex ml-1  ' + ${styles.arcadeFont}`}
+              className={`flex ml-1  ' + ${null}`}
               onMouseEnter={() => setHoverOverConnect(true)}
               // onMouseLeave={() => setHoverOverConnect(false)}
             >
@@ -344,16 +349,17 @@ const Navbar = () => {
         showModal={showSigninModal}
         setshowModal={setShowSigninModal}
       />
+      <SelectChainModal showModal={showchainModal} setShowModal={setshowchainModal} />
       <div
         className={
-          'md:top-3 top-0 z-30 duration-300 ease-in' +
+          ' z-30 duration-300 ease-in' +
           navStyles.navDiv +
           (dropDownMenu ? ' bg-black/75 md:bg-transparent' : '')
         }
       >
         <nav
           className={
-            'md:w-[90%] w-full md:rounded-xl md:max-w-7xl md:px-14 md:p-4 p-4 py-2' +
+            'w-full  md:p-4 p-4' +
             navStyles.navBar +
             (dropDownMenu ? ' h-screen md:h-fit' : '')
           }
@@ -361,9 +367,9 @@ const Navbar = () => {
           <div className='flex items-center justify-between w-full'>
             <HashCaseLogo />
             <div className='flex md:hidden items-center gap-x-8'>
-              <a href='https://twitter.com/hash_case' target='_blank' className=''>
+              {/* <a href='https://twitter.com/hash_case' target='_blank' className=''>
                 <img src='/icons/twitter.png' alt='twitter' className='w-8 h-8' />
-              </a>
+              </a> */}
               <div className='flex justify-center items-center md:hidden'>
                 <div
                   className='inline-block cursor-pointer'
@@ -396,15 +402,27 @@ const Navbar = () => {
             <div
               className={
                 'hidden md:flex gap-x-6 lg:gap-x-16 md:mx-4 mx-8 text-white text-xs lg:text-sm items-center ' +
-                styles.arcadeFont
+                null
               }
             >
               {menuItems()}
             </div>
             <div className='hidden md:flex items-center gap-x-8'>
-              <a href='https://twitter.com/hash_case' target='_blank'>
+              {/* <a href='https://twitter.com/hash_case' target='_blank'>
                 <img src='/icons/twitter.png' alt='twitter' className='w-8 h-8' />
-              </a>
+              </a> */}
+              <button
+              onClick={(e) => setshowchainModal(true)}
+              className={`flex ml-1  text-white'`}
+              // onMouseLeave={() => setHoverOverConnect(false)}
+            >
+              <span className='ml-4 rounded-full p-2 bg-white/20 hover:bg-white/50 transition-all'>
+              {/* Select Chain */}
+              
+              🔗
+              </span>
+            </button>
+              {/* <div className='rounded-lg bg-white px-2'></div> */}
               {loginOptions()}
             </div>
           </div>

@@ -526,7 +526,7 @@ exports.getAllByIDs = async (req, res) => {
 };
 
 exports.getSingleMerch = async (req, res) => {
-  console.log(req.params.id);
+  console.log(req.params.id ,"HERER");
   try {
     const id = req.params.id;
 
@@ -542,6 +542,7 @@ exports.getSingleMerch = async (req, res) => {
     if (!merchandise_single) {
       return res.status(400).json({ msg: "Merch not found for ID" });
     }
+    console.log(merchandise_single)
     res.status(200).json(merchandise_single);
 
     // res.json(merchandise_single.data);

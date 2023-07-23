@@ -4,7 +4,7 @@ import InformationHero from "../InformationHero";
 import styles from "./Hero.module.css";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { heroParticleEffects } from "../constants";
+// import { heroParticleEffects } from "../constants";
 import designStyles from "../effects.module.scss";
 import Link from "next/link";
 
@@ -25,12 +25,12 @@ export default function Hero() {
     <>
       <div className="hidden h-[90vh] md:grid grid-cols-7 font-manrope relative w-[99.2vw]">
         <div className="absolute h-full w-full   ">
-          <Particles
+          {/* <Particles
             id="tsparticles"
             className="absolute w-full"
             init={particlesInit}
             options={heroParticleEffects}
-          />
+          /> */}
         </div>
         <div className=" z-20 col-span-5 h-full  flex flex-col justify-center items-center">
           <div className="relative">
@@ -42,16 +42,15 @@ export default function Hero() {
             <div className="mt-20 grid grid-cols-4 justify-center">
               <div
                 className={
-                  "col-span-3 leading-relaxed tracking-tighter text-xl lg:text-3xl text-white " +
-                  styles.arcadeFont
+                  "col-span-3   text-xl lg:text-4xl text-white " +
+                  null
                 }
               >
-                ADDING REAL WORLD UTILITY TO{" "}
-                <span className="text-sky-400">NFTS</span>
+                Add a Utility Layer to your {" "}
+                <span className="text-green-400">Valuable Assets</span>
               </div>
-              <div className="col-span-2 text-lg text-gray-200 font-thin my-4">
-                Bridging your real and virtual world with HashCase, your Web 2.5
-                platform.
+              <div className="col-span-2 text-lg text-gray-200  my-4">
+              Pixel Link enables you to add a 'utility later chain' to your existing 'store of value chain', which makes the utility modular and secures against further dilution of your circulating supply
               </div>
               <div className="col-span-3 flex items-center">
                 <button
@@ -72,14 +71,14 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="relative col-span-2 h-full bg-home-background-3 bg-cover bg-center md:flex flex-col justify-center">
+        <div className="relative col-span-2 h-full  bg-cover bg-center md:flex flex-col justify-center">
           <div className="relative">
             <div
-              className={` absolute -top-40 -left-32 ${designStyles.glowingDotSmallStrong}`}
+              className={` absolute -top-40 -left-32 `}
             ></div>
           </div>
           <img
-            src="https://hash-collect.s3.ap-south-1.amazonaws.com/website/hero.png"
+            src="https://hash-collect.s3.ap-south-1.amazonaws.com/WhatsApp+Image+2023-07-23+at+10.11.33.jpeg"
             alt="img"
             className="absolute mt-20 md:-left-24 -left-32 lg:-left-52 w-[450px]"
           />
@@ -99,21 +98,20 @@ export default function Hero() {
             <div
               className={
                 "leading-relaxed tracking-tighter text-lg text-white " +
-                styles.arcadeFont
+                null
               }
             >
-              ADDING REAL WORLD UTILITY TO{" "}
-              <span className="text-sky-400">NFTS</span>
+              Add a Utility Layer to your {" "}
+              <span className="text-sky-400">Valuable Assets</span>
             </div>
             <div className="text-sm text-gray-300 font-thin my-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.Tempus
-              scelerisque bibendum purus tri.
+            Pixel Link enables you to add a 'utility later chain' to your existing 'store of value chain', which makes the utility modular and secures against further dilution of your circulating supply
             </div>
             <div className="w-full flex flex-col justify-center items-center">
               <button
                 className={
                   "font-thin rounded-sm bg-gradient-to-r from-[#4A99D3] to-[#00A1D3] p-4 my-6 text-xs text-white " +
-                  styles.arcadeFont
+                  null
                 }
               >
                 GET STARTED
@@ -127,7 +125,7 @@ export default function Hero() {
       </div>
 
       <div className="w-full mt-4 flex justify-center items-center">
-        <InformationHero />
+        {/* <InformationHero /> */}
       </div>
     </>
   );
